@@ -1,5 +1,13 @@
 class HomeController < ApplicationController
   def index
+    require 'net/http'
+    require 'json'
+
+    @url = 'https://api.coinmarketcap.com/v1/ticker/?convert=GBP&limit=100'
+    @uri = URI(@url)
+    @response = Net::HTTP.get(@uri)
+    @coins = JSON.parse(@response)
+    
   end
 
   def about
