@@ -5,26 +5,33 @@
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
+      <th>Name</th>
       <th>Symbol</th>
       <th>Cost per</th>
       <th>Amount owned</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @cryptomoneys.each do |cryptomoney| %>
       <% if cryptomoney.user_id == current_user.id %>
-        <tr>
+         <% if cryptomoney.symbol %>
+         <% cryptomoney.symbol = cryptomoney.symbol.upcase %> 
+      <% end %>  
+      <tr>
+        <% for x in @lookup_cryptomoney %>
+          <% if cryptomoney.symbol == x["symbol"] %>
+            <td><%= link_to x["name"], cryptomoney %></td>
+          <% end %>  
+        <% end %> 
+
          <td><%= cryptomoney.symbol %></td>
          <td><%= cryptomoney.cost_per %></td>
          <td><%= cryptomoney.amount_owned %></td>
-         <td><%= link_to 'Show', cryptomoney %></td>
-         <td><%= link_to 'Edit', edit_cryptomoney_path(cryptomoney) %></td>
-         <td><%= link_to 'Destroy', cryptomoney, method: :delete, data: { confirm: 'Are you sure?' } %></td>
        </tr>
-     <% end %>
+      <% end %>
     <% end %> 
+
   </tbody>
 </table>
 

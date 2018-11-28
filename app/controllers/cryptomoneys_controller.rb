@@ -7,6 +7,12 @@ class CryptomoneysController < ApplicationController
   # GET /cryptomoneys.json
   def index
     @cryptomoneys = Cryptomoney.all
+    require 'net/http'
+    require 'json'
+    @url = 'https://api.coinmarketcap.com/v1/ticker/?convert=GBP&limit=100'
+    @uri = URI(@url)
+    @response = Net::HTTP.get(@uri)
+    @lookup_cryptomoney = JSON.parse(@response)
   end
 
   # GET /cryptomoneys/1
