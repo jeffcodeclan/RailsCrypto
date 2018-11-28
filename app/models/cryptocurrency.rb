@@ -1,2 +1,0 @@
-class Cryptocurrency < ApplicationRecord
-end

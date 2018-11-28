@@ -1,6 +1,6 @@
-class CreateCryptocurrencies < ActiveRecord::Migration[5.2]
+class CreateCryptomoneys < ActiveRecord::Migration[5.2]
   def change
-    create_table :cryptocurrencies do |t|
+    create_table :cryptomoneys do |t|
       t.string :symbol
       t.integer :user_id
       t.decimal :cost_per
@@ -8,6 +8,6 @@ class CreateCryptocurrencies < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :cryptocurrencies, :user_id
+    add_index :cryptomoneys, :user_id
   end
 end
