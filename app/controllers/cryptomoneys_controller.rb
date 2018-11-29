@@ -19,6 +19,13 @@ class CryptomoneysController < ApplicationController
   # GET /cryptomoneys/1
   # GET /cryptomoneys/1.json
   def show
+    @cryptomoneys = Cryptomoney.all
+    require 'net/http'
+    require 'json'
+    @url = 'https://api.coinmarketcap.com/v1/ticker/?convert=GBP&limit=100'
+    @uri = URI(@url)
+    @response = Net::HTTP.get(@uri)
+    @show_cryptomoneys = JSON.parse(@response)
   end
 
   # GET /cryptomoneys/new
