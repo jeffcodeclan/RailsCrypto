@@ -1,4 +1,3 @@
-
 <h1>Listing Cryptos</h1>
 <br/>
 
@@ -6,9 +5,16 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Symbol</th>
-      <th>Cost per</th>
-      <th>Amount owned</th>
+      <th>Current Price</th>
+      <th>Rank </th>
+      <th>1 Hr %</th>
+      <th>24 Hr %</th>
+      <th>7 Day % </th>
+      <th>Current Value</th>
+      <th>Total Paid</th>
+      <th>Profit/Loss</th>
+      <th>Cost Paid Per</th>
+      <th>Amount Owned</th>
     </tr>
   </thead>
 
@@ -22,19 +28,30 @@
         <% for x in @lookup_cryptomoney %>
           <% if cryptomoney.symbol == x["symbol"] %>
             <td><%= link_to x["name"], cryptomoney %></td>
+            <td>£<%= x["price_gbp"] %></td>
+            <td><%= x["rank"] %></td>
+            <td><%= x["percent_change_1h"] %>%</td>
+            <td><%= x["percent_change_24h"] %>%</td>
+            <td><%= x["percent_change_7d"] %>%</td>
+            <td>£<%= x["price_gbp"].to_d * cryptomoney.amount_owned %></td>
+            <td>£<%= cryptomoney.cost_per * cryptomoney.amount_owned %></td>
+            <td>£<%= (x["price_gbp"].to_d * cryptomoney.amount_owned) - (cryptomoney.cost_per * cryptomoney.amount_owned) %></td>
+            <% @profit_loss += (x["price_gbp"].to_d * cryptomoney.amount_owned) - (cryptomoney.cost_per * cryptomoney.amount_owned) %>
           <% end %>  
         <% end %> 
 
-         <td><%= cryptomoney.symbol %></td>
-         <td><%= cryptomoney.cost_per %></td>
-         <td><%= cryptomoney.amount_owned %></td>
+         <td>£<%= cryptomoney.cost_per %></td>
+         <td>£<%= cryptomoney.amount_owned %></td>
        </tr>
       <% end %>
     <% end %> 
-
   </tbody>
 </table>
 
-<br>
+<br/>
+<br/>
+
+<strong>Portfolio Profit/Loss:</strong> £<%= @profit_loss %>
+<br/><br/>
 
 <%= link_to 'New Crypto', new_cryptomoney_path, class: "btn btn-default" %>
