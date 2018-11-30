@@ -1,4 +1,4 @@
-<h1>Crypto Currency Portfolio</h1>
+<h1>Crypto Currency Market Table</h1>
 
 <p>Crypto Currency Portfolio - Web Application</p>
 
@@ -9,8 +9,9 @@
 <% for x in @coins %>
     <% for coin in @my_coins %>
         <% if coin == x["symbol"] %>
-          <%= x["name"] %>: £<%= x["price_gbp"] %><br/>
-          Rank: <%= x["rank"] %><br/>
+        <%= x["name"] %>: 
+        £<%= x["price_gbp"] %><br/>
+        Rank: <%= x["rank"] %><br/>
           <br/>
         <% end %>  
     <% end %>

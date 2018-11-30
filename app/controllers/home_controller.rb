@@ -6,7 +6,8 @@ class HomeController < ApplicationController
     @uri = URI(@url)
     @response = Net::HTTP.get(@uri)
     @coins = JSON.parse(@response)
-    @my_coins = ["BTC", "XRP", "ADA", "XLM", "STEEM"]
+    @my_coins = ["BTC", "XRP", "ETH", "BCH", "XLM", "EOS", "LTC", "USDT", "BSV", "ADA"]
+    
   end
 
   def about
