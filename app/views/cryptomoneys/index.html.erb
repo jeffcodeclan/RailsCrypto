@@ -25,7 +25,7 @@
          <% cryptomoney.symbol = cryptomoney.symbol.upcase %> 
       <% end %>  
       <tr>
-        <% for x in @index_cryptomoney %>
+        <% for x in @lookup_cryptomoney%>
           <% if cryptomoney.symbol == x["symbol"] %>
             <td><%= link_to x["name"], cryptomoney %></td>
             <td>£<%= x["price_gbp"] %></td>
